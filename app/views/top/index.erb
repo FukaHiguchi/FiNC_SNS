@@ -2,6 +2,7 @@
 <% if user_signed_in? %>
 
 <h4>メールアドレス:<%= current_user.email%> </h4>
+<%= link_to "歩数記録", new_step_log_path %>
 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 <%else%>
 <h2>現在ログインしていません</h2>
