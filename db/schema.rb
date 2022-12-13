@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2022_12_07_081528) do
   end
 
   create_table "step_logs", charset: "utf8mb4", force: :cascade do |t|
+    t.date "day", null: false
     t.bigint "footsteps", null: false
     t.float "distant"
     t.bigint "burned_calorie"

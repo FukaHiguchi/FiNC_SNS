@@ -1,6 +1,12 @@
 <h1>歩数記録</h1>
 
-<%= form_with  model: @step_logs, local: true do |f| %>
+<%# <% if ( @date.nil? )%>
+  <%# <%= Date.current.strftime('%Y/%m/%d') %>
+<%# <% else %>
+  <%# <%= @date %>
+<%# <% end %> 
+
+<%= form_with  model: @step_log, local: true do |f| %>
   <div class="container_steplogs">
     <div>
       <%= f.label :歩数 %>
@@ -23,6 +29,9 @@
   </div>
 
   <%= month_calendar do |date| %>
-    <%= date.day %>
+    <%# <%  binding.pry %>
+    <%= link_to date.day , step_logs_path(date) %>
   <%end%>
 <% end%>
+
+
