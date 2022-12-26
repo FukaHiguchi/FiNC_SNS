@@ -1,53 +1,22 @@
-<h1>歩数記録</h1>
-<h3>
-<% if ( @date.nil? )%>
-  <% @date =  Date.current%>
-  <%= @date %>
-<% else %>
-  <%= @date %>
-<% end %> 
-</h3>
-
-<%= form_with  model: @step_log, local: true do |f| %>
-  <div class="container_steplogs">
-    <div>
-      <%= f.label :歩数 %>
-      <%= f.number_field :footsteps %>
-    </div>
-    <div>
-      <%= f.label :距離 %>
-      <%= f.number_field :distant %>
-    </div>
-    <div>
-      <%= f.label :消費カロリー %>
-      <%= f.number_field :burned_calorie %>
-    </div>
-    <div> 
-      <%= f.label :時間 %>
-      <%= f.number_field :duration %>
-    </div>
-    <div>
-      <%= f.date_field :day , value: @date %>
-    </div>
-    <%= f.submit :登録 %>
-  
-  </div>
-
-  <%= month_calendar events:@step_logs do |date, step_logs| %>
-
-    <%= link_to date.day , step_logs_path(date) %>
-      <% step_logs.each do |step_log| %>
-        <div>
-          <%= step_log.footsteps %>
-        </div>
-      <% end %>  
-    <% end %>
-  <%end%>
-  <div>
-    <%= @date.beginning_of_month %>
-    <%= column_chart StepLog.chart(@date), xmin: @date.beginning_of_month.to_s, xmax: @date.end_of_month.to_s %>
-  </div>
-
-
-
+<h1>歩数記録一覧</h1>
+<h2>ようこそ<%= current_user.name %></h2>
+<table>
+  <tr class="">
+    <th>日付</th>
+    <th>歩数</th>
+    <th>歩いた距離</th>
+    <th>消費カロリー</th>
+    <th>時間</th>
+  </tr>
+  <% @step_logs.each do |s| %>
+  <tr>
+      <td><%= s.day %></td>
+      <td><%= s.footsteps %></td>
+      <td><%= s.distant %></td>
+      <td><%= s.burned_calorie %></td>
+      <td><%= s.duration %></td>
+    
+  </tr>
+  <% end %>
+</table>
 

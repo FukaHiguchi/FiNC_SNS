@@ -5,21 +5,26 @@ class StepLog < ApplicationRecord
 
   def self.chart(date)
     data_array = StepLog.pluck(:day, :footsteps).to_h
-    return if data_array.blank?
+    if data_array != nil
       date_to = date.end_of_month
       date_from = date.beginning_of_month
       
+      data =[]
       (date_from..date_to).each do |day|
-        # p date
-        data_array[day] = nil if data_array[day] == nil
+        if data_array[day] == nil
+          data.push([day.mday, nil])
+        else
+          data.push([day.mday, data_array[day]])
+        end
       end
-      data = data_array.sort
+      
+      return data
     
-      p "グラフ"
-      p data
+    end
+
+
 
 
   end
-
 
 end

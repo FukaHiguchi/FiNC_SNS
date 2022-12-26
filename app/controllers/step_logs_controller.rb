@@ -2,22 +2,17 @@ class StepLogsController < ApplicationController
   before_action :set_beginning_of_week
   
   def index
-    @date = Date.current
-    if params[:format] != nil
-      @date = params[:format].to_date
-    end
+    @step_logs = StepLog.all.order(day: :asc)
 
-
-    p @date
-
-
-
-    @step_logs = StepLog.all
-    @step_log = StepLog.new
 
   end
 
   def new
+    @date = Date.current
+    if params[:format] != nil
+      @date = params[:format].to_date
+    end
+    @step_logs = StepLog.all
     @step_log = StepLog.new
   end
   
@@ -32,7 +27,7 @@ class StepLogsController < ApplicationController
 
 
   def show 
-
+    @step_logs = StepLog.all
   end
 
   private 
