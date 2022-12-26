@@ -1,0 +1,22 @@
+<h1>歩数記録一覧</h1>
+<h2>ようこそ<%= current_user.name %></h2>
+<table>
+  <tr class="">
+    <th>日付</th>
+    <th>歩数</th>
+    <th>歩いた距離</th>
+    <th>消費カロリー</th>
+    <th>時間</th>
+  </tr>
+  <% @step_logs.each do |s| %>
+  <tr>
+      <td><%= s.day %></td>
+      <td><%= s.footsteps %></td>
+      <td><%= s.distant %></td>
+      <td><%= s.burned_calorie %></td>
+      <td><%= s.duration %></td>
+    
+  </tr>
+  <% end %>
+</table>
+

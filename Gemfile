@@ -76,3 +76,8 @@ end
 
 gem 'devise'
 gem 'net-smtp'
+gem "simple_calendar", "~> 2.4"
+gem 'rails-i18n'
+gem 'pry-rails'
+gem "chartkick"
+gem "groupdate"
