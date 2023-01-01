@@ -1,10 +1,14 @@
 class StepLog < ApplicationRecord
+  belongs_to :user
+  
+  
   def start_time
     self.day
   end
 
-  def self.chart(date)
-    data_array = StepLog.pluck(:day, :footsteps).to_h
+  def self.chart(date,current_user_id)
+    data_array = StepLog.where(user_id: current_user_id).pluck(:day, :footsteps).to_h
+    p data_array
     if data_array != nil
       date_to = date.end_of_month
       date_from = date.beginning_of_month

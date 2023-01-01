@@ -1,5 +1,6 @@
 <h1>歩数記録</h1>
 <h3><%= @date %></h3>
+<h3><%= " #{current_user.name}がログインしています" %></h3>
 <%= link_to "記録一覧" ,step_logs_path %>
 
 <%= form_with  model: @step_log, local: true do |f| %>
@@ -29,7 +30,7 @@
 
   <%= month_calendar events:@step_logs do |date, step_logs| %>
 
-    <%= link_to date.day , step_logs_path(date) %>
+    <%= link_to date.day , new_step_log_path(date) %>
       <% step_logs.each do |step_log| %>
         <div>
           <%= step_log.footsteps %>
@@ -38,7 +39,7 @@
     <% end %>
   <%end%>
   <div>
-    <%= column_chart StepLog.chart(@date), xtitle: "日付", ytitle: "歩数",max:10000 %>
+    <%= column_chart StepLog.chart(@date, current_user.id), xtitle: "日付", ytitle: "歩数",max:10000 %>
   </div>
 
 

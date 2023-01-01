@@ -81,3 +81,4 @@ gem 'rails-i18n'
 gem 'pry-rails'
 gem "chartkick"
 gem "groupdate"
+gem "ransack"

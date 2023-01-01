@@ -1,0 +1,20 @@
+<h1>グループ作成</h1>
+<%= link_to "グループ一覧", groups_path  %>
+<div>
+  <%= form_with model: @group, local: true do |f| %>
+    <div>
+      <%= f.label :name, "グループ名" %>
+      <%= f.text_field :name %>
+      <div>
+        <p>グループメンバーを選択</p>
+        <%= f.collection_check_boxes :user_ids, User.all, :id, :name do |b| %>
+          <div>
+            <%= b.check_box %>
+            <%= b.text %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%= f.submit "Submit" %>
+  <% end %>
+</div>
