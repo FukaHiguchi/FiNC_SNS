@@ -1,0 +1,40 @@
+<h1>グループの記録一覧</h1>
+<div>
+  <%= link_to "グループ一覧", groups_path %>
+  <%= link_to "グループ退会", group_path(@group), method: :delete %>
+  <%= link_to "グループ作成" , new_group_path %>
+  <%= link_to "グループ編集", edit_group_path %>
+  <h2><%= @group.name %></h2>
+  <div>
+    <div>表示する期間</div>
+    <%= search_form_for @q ,url: group_path(@group.id) do |f| %>
+      <%= f.date_field :created_at_gteq %>
+      <span>~</span>
+      <%= f.date_field :created_at_lteq_end_of_day %>
+      <%= f.submit "検索", disable_with: 'Submiting...' %>
+    <% end %>
+</div>
+  <table>
+  <tr class="">
+    <th>ユーザー名</th>
+    <th>日付</th>
+    <th>歩数</th>
+    <th>歩いた距離</th>
+    <th>消費カロリー</th>
+    <th>時間</th>
+  </tr>
+  <% @q_step_logs.each do |s| %>
+  <tr>
+      <td><%= User.find(s.user_id).name %></td>
+      <td><%=  s.day %></td>
+      <td><%= "#{s.footsteps} 歩" %></td>
+      <td><%= "#{s.distant} km" %></td>
+      <td><%= "#{s.burned_calorie} kcal" %></td>
+      <td><%= "#{s.duration} min" %></td>
+    
+  </tr>
+  <% end %>
+</table>
+
+
+</div>

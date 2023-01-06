@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_20_044441) do
+ActiveRecord::Schema.define(version: 2022_12_30_143751) do
 
   create_table "comments", charset: "utf8mb4", force: :cascade do |t|
     t.string "text"
@@ -18,6 +18,21 @@ ActiveRecord::Schema.define(version: 2022_12_20_044441) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["my_thread_id"], name: "index_comments_on_my_thread_id"
+  end
+
+  create_table "group_users", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_users_on_group_id"
+    t.index ["user_id"], name: "index_group_users_on_user_id"
+  end
+
+  create_table "groups", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "my_threads", charset: "utf8mb4", force: :cascade do |t|
@@ -34,6 +49,7 @@ ActiveRecord::Schema.define(version: 2022_12_20_044441) do
     t.float "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
   end
 
   create_table "user_step_logs", charset: "utf8mb4", force: :cascade do |t|
@@ -59,6 +75,8 @@ ActiveRecord::Schema.define(version: 2022_12_20_044441) do
   end
 
   add_foreign_key "comments", "my_threads"
+  add_foreign_key "group_users", "groups"
+  add_foreign_key "group_users", "users"
   add_foreign_key "user_step_logs", "step_logs"
   add_foreign_key "user_step_logs", "users"
 end

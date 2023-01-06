@@ -1,0 +1,18 @@
+<div>
+  <h1>グループ一覧</h1>
+  <%= link_to "TOPページに戻る", root_path %>
+</div>
+<div>
+  <%= "こんにちは#{current_user.name}"%>
+  <% @groups.each do |g| %>
+    <% if g.user_ids.include?(current_user.id)  %>
+      <div><%= link_to "#{g.name}", group_path(g.id) %></div>
+      <div>
+        <div>メンバー</div>
+        <% g.user_ids.each do |u| %>
+          <div><%= User.find(u.to_i).name %></div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

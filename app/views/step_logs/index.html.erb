@@ -1,5 +1,15 @@
 <h1>歩数記録一覧</h1>
-<h2>ようこそ<%= current_user.name %></h2>
+<h2>こんにちは<%= current_user.name %></h2>
+<%= link_to "記録する", new_step_log_path %>
+<div>
+  <h3>表示する期間</h3>
+  <%= search_form_for @q do |f| %>
+    <%= f.date_field :created_at_gteq %>
+    <span>~</span>
+    <%= f.date_field :created_at_lteq_end_of_day %>
+    <%= f.submit "Submit", disable_with: 'Submiting...' %>
+  <% end %>
+</div>
 <table>
   <tr class="">
     <th>日付</th>
@@ -8,13 +18,13 @@
     <th>消費カロリー</th>
     <th>時間</th>
   </tr>
-  <% @step_logs.each do |s| %>
+  <% @results.each do |s| %>
   <tr>
-      <td><%= s.day %></td>
-      <td><%= s.footsteps %></td>
-      <td><%= s.distant %></td>
-      <td><%= s.burned_calorie %></td>
-      <td><%= s.duration %></td>
+      <td><%=  s.day %></td>
+      <td><%= "#{s.footsteps} 歩" %></td>
+      <td><%= "#{s.distant} km" %></td>
+      <td><%= "#{s.burned_calorie} kcal" %></td>
+      <td><%= "#{s.duration} min" %></td>
     
   </tr>
   <% end %>
