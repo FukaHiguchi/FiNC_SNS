@@ -1,4 +1,4 @@
-<h1>歩数記録</h1>
+<h1>編集画面</h1>
 <h3><%= @date %></h3>
 <h3><%= " #{current_user.name}がログインしています" %></h3>
 <%= link_to "記録一覧" ,step_logs_path %>
@@ -31,7 +31,7 @@
 
   <%= month_calendar events:@step_logs do |date, step_logs| %>
     <%if @step_logs.exists?(day: date) %>
-      <%= link_to date.day ,edit_step_log_path( @step_logs.find_by(day: date).id ,date)%>
+      <%= link_to date.day ,edit_step_log_path( @step_logs.find_by(day: date).id, date)%>
     <% else %>
       <%= link_to date.day , new_step_log_path(date) %>
     <%end%>
@@ -46,7 +46,3 @@
   <div>
     <%= column_chart StepLog.chart(@date, current_user.id), xtitle: "日付", ytitle: "歩数",max:10000 %>
   </div>
-
-
-
-

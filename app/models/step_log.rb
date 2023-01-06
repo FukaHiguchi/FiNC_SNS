@@ -1,7 +1,11 @@
 class StepLog < ApplicationRecord
   belongs_to :user
+  has_many :favorites , dependent: :destroy
   
-  
+  def favorited?(u)
+    Favorite.where(step_log_id: u.id ).exists?
+  end
+
   def start_time
     self.day
   end

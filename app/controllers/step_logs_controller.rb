@@ -26,9 +26,23 @@ class StepLogsController < ApplicationController
     end
   end
 
-
   def show 
     
+  end
+
+  def edit
+    @date = params[:format].to_date
+    @step_logs = StepLog.where(user_id: current_user.id)
+    @step_log = StepLog.find(params[:id])
+  end
+
+  def update
+    @step_log = StepLog.find(params[:id])
+    if @step_log.update(log_params)
+      redirect_to step_logs_path
+    else
+      render :new
+    end
   end
 
   private 
