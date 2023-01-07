@@ -25,6 +25,7 @@
       <%= f.date_field :day , value: @date %>
     </div>
     <%= f.submit :登録 %>
+    <%= link_to "消去", step_log_path(@step_log.id) ,method: :delete %>
     <div>
     </div>
   </div>
@@ -35,8 +36,6 @@
     <% else %>
       <%= link_to date.day , new_step_log_path(date) %>
     <%end%>
-    
-    
       <% step_logs.each do |step_log| %>
         <div>
           <%= step_log.footsteps %>

@@ -45,6 +45,16 @@ class StepLogsController < ApplicationController
     end
   end
 
+  def destroy
+    @step_log = StepLog.find(params[:id])
+    if @step_log.destroy
+      redirect_to step_logs_path
+    else
+      flash.now[:danger] = "消去に失敗しました"
+      redirect_to step_logs_path
+    end
+  end
+
   private 
   def set_beginning_of_week
     Date.beginning_of_week = :sunday

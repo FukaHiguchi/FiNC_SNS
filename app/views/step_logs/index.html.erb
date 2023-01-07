@@ -25,7 +25,8 @@
       <td><%= "#{s.distant} km" %></td>
       <td><%= "#{s.burned_calorie} kcal" %></td>
       <td><%= "#{s.duration} min" %></td>
-    
+      <td><%= link_to "編集", edit_step_log_path(s.id,s.day) %></td>
+      <td><%= link_to "消去",step_log_path(s.id), method: :delete %></td>
   </tr>
   <% end %>
 </table>
