@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_30_143751) do
+ActiveRecord::Schema.define(version: 2023_01_01_073356) do
 
   create_table "comments", charset: "utf8mb4", force: :cascade do |t|
     t.string "text"
@@ -18,6 +18,15 @@ ActiveRecord::Schema.define(version: 2022_12_30_143751) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["my_thread_id"], name: "index_comments_on_my_thread_id"
+  end
+
+  create_table "favorites", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "step_log_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["step_log_id"], name: "index_favorites_on_step_log_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "group_users", charset: "utf8mb4", force: :cascade do |t|
@@ -75,6 +84,8 @@ ActiveRecord::Schema.define(version: 2022_12_30_143751) do
   end
 
   add_foreign_key "comments", "my_threads"
+  add_foreign_key "favorites", "step_logs"
+  add_foreign_key "favorites", "users"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
   add_foreign_key "user_step_logs", "step_logs"
