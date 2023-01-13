@@ -1,0 +1,4 @@
+<script>
+
+$('#favorite_buttons_<%= params[:id] %>').html('<%= link_to "いいね済",destroy_favorite_path(params[:id]) , method: :delete, remote:true, style: "color: red;" %>');
+</script>

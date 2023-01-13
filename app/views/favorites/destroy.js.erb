@@ -1,0 +1,3 @@
+<script>
+  $('#favorite_buttons_<%= params[:id] %>').html('<%= link_to "いいね",create_favorite_path(params[:id]) , method: :post, remote:true %>');
+</script>

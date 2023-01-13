@@ -82,3 +82,4 @@ gem 'pry-rails'
 gem "chartkick"
 gem "groupdate"
 gem "ransack"
+gem 'jquery-rails'
