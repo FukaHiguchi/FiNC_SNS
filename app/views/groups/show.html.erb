@@ -25,9 +25,17 @@
   </tr>
   <% @q_step_logs.each do |s| %>
   <tr>
-      <td id="favorite_buttons_<%= s.id %>">
-        <%= current_user.favorited?(s) %>
-        <%= render "favorites/favorites", step_log: s %>
+      <td>
+        <%= s.favorited?(s) %>
+        <% if s.favorited?(s) %>
+          <%= link_to step_log_favorites_path(s.id), method: :delete, remote: true do%>
+            <span>○</span>
+          <% end %>
+        <% else %>
+          <%= link_to step_log_favorites_path(s.id), method: :post, remote: true  do%>
+            <span >♡</span>
+          <%end%>
+        <%end%>
       </td>
       <td><%= User.find(s.user_id).name %></td>
       <td><%=  s.day %></td>

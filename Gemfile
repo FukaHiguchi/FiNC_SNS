@@ -59,11 +59,13 @@ group :development do
   gem 'rubocop', require: false
   gem 'rubocop-performance'
   gem 'rubocop-rails'
+  
 end
 
 group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
   gem 'factory_bot_rails'
+  gem "faker"
 end
 
 group :development do
@@ -83,3 +85,5 @@ gem "chartkick"
 gem "groupdate"
 gem "ransack"
 gem 'jquery-rails'
+
+

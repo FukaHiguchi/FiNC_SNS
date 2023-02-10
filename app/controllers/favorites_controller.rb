@@ -6,8 +6,6 @@ class FavoritesController < ApplicationController
 
   def destroy
     @step_log_favorite = Favorite.find_by(user_id: current_user.id, step_log_id: params[:step_log_id])
-    p "消去"
-    p @step_log_favorite
     @step_log_favorite.destroy
   end
 end

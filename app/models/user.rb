@@ -8,8 +8,4 @@ class User < ApplicationRecord
   has_many :groups, through: :group_users, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  def favorited?(u)
-    Favorite.where(step_log_id: u.id ).exists?
-  end
-
 end
