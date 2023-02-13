@@ -1,6 +1,8 @@
 class StepLog < ApplicationRecord
   belongs_to :user
   has_many :favorites , dependent: :destroy
+  validates :footsteps, presence: true
+  validates :day , presence: true
 
   def favorited?(u)
     Favorite.where(step_log_id: u.id ).exists?

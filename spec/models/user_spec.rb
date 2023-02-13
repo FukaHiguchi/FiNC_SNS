@@ -19,13 +19,9 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Emailを入力してください")
       end
       it "nameが空では登録できない" do
-        @user.name = ""
+        @user.name = nil
         @user.valid?
-        
-        binding.pry
-        
-        
-        expect(@user.errors.full_messages).to include("nameを入力してください")
+        expect(@user.errors.full_messages.first).to include("Nameを入力してください")
       end
       it "重複したemailが存在する場合登録できない" do
         @user.save
@@ -48,7 +44,7 @@ RSpec.describe User, type: :model do
       it "passwordが存在してもpassword_confirmationが空では登録できない" do
         @user.password_confirmation = ""
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmationとPaasswordの入力が一致しません")
+        expect(@user.errors.full_messages).to include("Password confirmationとPasswordの入力が一致しません")
       end
     end
     describe 'パスワードの検証' do
@@ -56,7 +52,7 @@ RSpec.describe User, type: :model do
         @user.password = 'password'
         @user.password_confirmation = 'pass'
         @user.valid?
-        expect(@user.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
+        expect(@user.errors.full_messages).to include("Password confirmationとPasswordの入力が一致しません")
       end
     end
   end
