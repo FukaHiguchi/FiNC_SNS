@@ -1,53 +1,57 @@
-<h1>歩数記録</h1>
-<h3><%= @date %></h3>
-<h3><%= " #{current_user.name}がログインしています" %></h3>
-<h3><%= " #{current_user.name}がログインしています" %></h3>
-<%= link_to "TOPページへ", root_path %>
-<%= link_to "記録一覧" ,step_logs_path %>
+<div class="container">
+  <h1 class="title">歩数記録</h1>
+  <h3><%= @date %></h3>
+  <h4><%= " #{current_user.name}がログインしています" %></h4>
+  <%= link_to "TOPページへ", root_path %>
+  <%= link_to "記録一覧" ,step_logs_path %>
 
-<%= form_with  model: @step_log, local: true do |f| %>
-  <div class="container_steplogs">
-    <div>
-      <%= f.label :歩数 %>
-      <%= f.number_field :footsteps %>
-    </div>
-    <div>
-      <%= f.label :距離 %>
-      <%= f.number_field :distant %>
-    </div>
-    <div>
-      <%= f.label :消費カロリー %>
-      <%= f.number_field :burned_calorie %>
-    </div>
-    <div> 
-      <%= f.label :時間 %>
-      <%= f.number_field :duration %>
-    </div>
-    <div>
-      <%= f.date_field :day , value: @date %>
-    </div>
-    <%= f.submit :登録 %>
-    <div>
-    </div>
-  </div>
+  <%= form_with  model: @step_log, local: true do |f| %>
+    <div class="container">
+      <div class="field">
+        <%= f.label :歩数 %>
+        <%= f.number_field :footsteps , autofocus: true %>
+      </div>
+      <div class="field">
+        <%= f.label :距離 %>
+        <%= f.number_field :distant %>
+      </div>
+      <div class="field">
+        <%= f.label :消費カロリー %>
+        <%= f.number_field :burned_calorie %>
+      </div>
+      <div class="field"> 
+        <%= f.label :時間 %>
+        <%= f.number_field :duration %>
+      </div>
+      <div class="field">
+        <%= f.date_field :day , value: @date %>
+      </div>
+      <div class="actions">
+        <%= f.submit :登録 %>
+      </div>
 
-  <%= month_calendar events:@step_logs do |date, step_logs| %>
-    <%if @step_logs.exists?(day: date) %>
-      <%= link_to date.day ,edit_step_log_path( @step_logs.find_by(day: date).id ,date)%>
-    <% else %>
-      <%= link_to date.day , new_step_log_path(date) %>
+      <div>
+      </div>
+    </div>
+
+    <%= month_calendar events:@step_logs do |date, step_logs| %>
+      <%if @step_logs.exists?(day: date) %>
+        <%= link_to date.day ,edit_step_log_path( @step_logs.find_by(day: date).id ,date)%>
+      <% else %>
+        <%= link_to date.day , new_step_log_path(date) %>
+      <%end%>
+        <% step_logs.each do |step_log| %>
+          <div>
+            <%= step_log.footsteps %>
+          </div>
+        <% end %>  
+      <% end %>
     <%end%>
-      <% step_logs.each do |step_log| %>
-        <div>
-          <%= step_log.footsteps %>
-        </div>
-      <% end %>  
-    <% end %>
-  <%end%>
-  <div>
-    <%= column_chart StepLog.chart(@date, current_user.id), xtitle: "日付", ytitle: "歩数",max:10000 %>
-  </div>
+    <div class="container">
+      <%= column_chart StepLog.chart(@date, current_user.id), xtitle: "日付", ytitle: "歩数",max:10000 %>
+    </div>
 
 
+</div>
 
 

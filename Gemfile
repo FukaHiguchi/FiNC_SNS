@@ -74,6 +74,8 @@ end
 
 group :development do
     gem 'rspec-queue'
+    gem 'bootstrap-sass'
+  gem 'devise-bootstrap-views', '~> 1.0'
 end
 
 gem 'devise'

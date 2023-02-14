@@ -4,7 +4,6 @@ class StepLogsController < ApplicationController
     @step_logs = StepLog.where(user_id: current_user.id).order(day: :asc)
     @q = @step_logs.ransack(params[:q])
     @results = @q.result(distinct: true)
-
   end
 
   def new
