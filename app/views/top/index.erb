@@ -1,12 +1,31 @@
-<h1>ログイン</h1>
-<% if user_signed_in? %>
+<body>
+  <div class="container-img">
+    <div class="container-rgb">
+      <nav class="navbar navbar-expand ">
+        <div class="container-fluid">
+          <button class="navbar-toggler"  data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <% if user_signed_in? %>
+              <%= link_to "歩数記録", new_step_log_path %>
+              <%= link_to "グループ作成", new_group_path %>
+              <%= link_to "グループ一覧", groups_path %>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+            <%else%>
+              <%= link_to "ログイン", new_user_session_path, class: 'button_login'%>
+              <%= link_to "新規登録", new_user_registration_path, class:'button_new' %>
+            <%end %>
+          </div>
+        </div>
+        </nav>
+        <div class="container ">
+            <h1 class="title" >MY HEALTH WEB</h1>
+            <p class="sub-title">歩数記録や運動した時間を記録できるwebアプリです</p>
+        </div>
+      </div>
+  </div>
+  
+</body>
+</html>
 
-<h4>メールアドレス:<%= current_user.email%> </h4>
-<%= link_to "歩数記録", new_step_log_path %>
-<%= link_to "グループ作成", new_group_path %>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<%else%>
-<h2>現在ログインしていません</h2>
-<%= link_to "ログイン", new_user_session_path, class: 'post'%>
-<%= link_to "新規登録", new_user_registration_path, class:'post' %>
-<%end %>

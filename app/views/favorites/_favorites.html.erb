@@ -1,0 +1,9 @@
+<% if current_user.favorited?(step_log) %>
+  <%= link_to destroy_favorite_path(step_log.id), method: :delete, remote: true do%>
+    <span>○</span>
+  <% end %>
+<% else %>
+  <%= link_to create_favorite_path(step_log.id), method: :post, remote: true do%>
+    <span >♡</span>
+  <%end%>
+<%end%>

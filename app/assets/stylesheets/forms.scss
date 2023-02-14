@@ -1,0 +1,35 @@
+// rails で生成されたフォームはfieldという div タグで囲まれているため、
+// その div タグに対して@extend .form-group;とすることで、
+// フォームのスペースを調整するbootstrap のクラスをあてています。
+div.field {
+  @extend .form-group !optional;
+
+  // fieldという div タグ内のinputタグ等に
+  // @extend .form-control;とすることで、
+  // フォームの枠線を変えるbootstrap のクラスをあてています。
+  input[type="text"],
+  textarea,
+  select,
+  input[type="date"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"] {
+    @extend .form-control !optional;
+  }
+}
+
+// actionsという div タグ内の<input type="submit">に対して
+// @extend .btn などをすることで、
+// ボタン形や色を変えるbootstrap のクラスをあてています。
+// my-2についてはスペースの調整用です。
+div.actions {
+  input[type="submit"] {
+    @extend .my-2 !optional;
+    @extend .btn !optional;
+    @extend .btn-primary !optional;
+    @extend .btn-block !optional;
+  }
+}
+.label{
+  color: black;
+}

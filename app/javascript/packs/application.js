@@ -9,6 +9,10 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "chartkick/chart.js"
 
+// = require jquery
+//= require jquery_ujs
+//= require_tree .
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

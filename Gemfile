@@ -59,11 +59,13 @@ group :development do
   gem 'rubocop', require: false
   gem 'rubocop-performance'
   gem 'rubocop-rails'
+  
 end
 
 group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
   gem 'factory_bot_rails'
+  gem "faker"
 end
 
 group :development do
@@ -72,6 +74,8 @@ end
 
 group :development do
     gem 'rspec-queue'
+    gem 'bootstrap-sass'
+  gem 'devise-bootstrap-views', '~> 1.0'
 end
 
 gem 'devise'
@@ -82,3 +86,6 @@ gem 'pry-rails'
 gem "chartkick"
 gem "groupdate"
 gem "ransack"
+gem 'jquery-rails'
+
+

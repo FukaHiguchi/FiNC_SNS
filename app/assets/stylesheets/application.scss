@@ -11,8 +11,16 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_self
- *= require_tree .
  *= require_directory .
  *= require simple_calendar
  */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+ @import "forms";
+ @import "top";
+ @import "step_logs";
+.container{
+  max-width: 100%;
+}
+

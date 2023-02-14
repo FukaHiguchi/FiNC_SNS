@@ -1,6 +1,7 @@
 <h1>歩数記録一覧</h1>
 <h2>こんにちは<%= current_user.name %></h2>
 <%= link_to "記録する", new_step_log_path %>
+<%= link_to "TOPページへ", root_path %>
 <div>
   <h3>表示する期間</h3>
   <%= search_form_for @q do |f| %>
